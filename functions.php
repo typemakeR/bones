@@ -41,6 +41,25 @@ You can change the names and dimensions to whatever
 you like. Enjoy!
 */
 
+/************* CUSTOM LOGIN PAGE *****************/
+
+// calling your own login css so you can style it 
+function bones_login_css() {
+    /* i couldn't get wp_enqueue_style to work :( */
+    echo '<link rel="stylesheet" href="' . get_stylesheet_directory_uri() . '/library/css/login.css">';
+}
+
+// changing the logo link from wordpress.org to your site 
+function bones_login_url() { echo bloginfo('url'); }
+
+// changing the alt text on the logo to show your site name 
+function bones_login_title() { echo get_option('blogname'); }
+
+// calling it only on the login page
+add_action('login_head', 'bones_login_css');
+add_filter('login_headerurl', 'bones_login_url');
+add_filter('login_headertitle', 'bones_login_title');
+
 /************* ACTIVE SIDEBARS ********************/
 
 // Sidebars & Widgetizes Areas
